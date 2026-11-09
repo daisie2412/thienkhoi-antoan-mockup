@@ -28,7 +28,7 @@ $$('.langsw a').forEach(a=>a.addEventListener('click',()=>store.set('tk-lang',a.
 /* ngăn ghi chú duyệt */
 const dr=$('.notes'), sc=$('.scrim');
 const setN=on=>{dr&&dr.classList.toggle('open',on);sc&&sc.classList.toggle('on',on);};
-const nb=$('[data-notes]'); if(nb) nb.onclick=()=>setN(true);
+$$('[data-notes]').forEach(nb=>nb.addEventListener('click',()=>{B.classList.remove('menu-open');setN(true);}));
 if(dr) $('.xbtn',dr).onclick=()=>setN(false); if(sc) sc.onclick=()=>setN(false);
 
 /* hộp xem video */
@@ -40,8 +40,30 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-video]');i
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){setN(false);B.classList.remove('menu-open');closeAll();closeV();}});
 
 /* dải video cuộn ngang */
-$$('.rail').forEach(r=>{const ctl=r.parentElement.querySelector('.rail-ctl');if(!ctl)return;
- $$('button',ctl).forEach(b=>b.onclick=()=>{const card=r.querySelector('.vcard');r.scrollBy({left:(b.dataset.d==='1'?1:-1)*((card?card.offsetWidth:300)+16),behavior:'smooth'});});});
+/* dải thẻ 1 hàng: nút trước/sau, tự chạy từ phải qua trái, dừng khi người xem đang dùng */
+const VI=document.documentElement.lang==='vi', RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const step=r=>{const k=[...r.children].find(x=>x.offsetWidth>0);return k?k.offsetWidth+(parseFloat(getComputedStyle(r).columnGap)||16):300;};
+const go=(r,d)=>{const max=r.scrollWidth-r.clientWidth;
+  if(d>0&&r.scrollLeft>=max-8) r.scrollTo({left:0,behavior:'smooth'});
+  else if(d<0&&r.scrollLeft<=8) r.scrollTo({left:max,behavior:'smooth'});
+  else r.scrollBy({left:d*step(r),behavior:'smooth'});};
+$$('.rail-auto').forEach(r=>{const c=document.createElement('div');c.className='rail-ctl ra';
+  c.innerHTML=`<button type="button" data-d="-1" aria-label="${VI?'Trước':'Previous'}">${ic('arrow-left')}</button><button type="button" data-d="1" aria-label="${VI?'Tiếp':'Next'}">${ic('arrow-right')}</button>`;
+  r.after(c);});
+$$('.rail,.rail-auto').forEach(r=>{
+  const ctl=r.classList.contains('rail-auto')?r.nextElementSibling:r.parentElement.querySelector('.rail-ctl');
+  let hold=0, vis=false;
+  const pause=ms=>{hold=Date.now()+ms;};
+  if(ctl) $$('button',ctl).forEach(b=>b.addEventListener('click',()=>{pause(8000);go(r,b.dataset.d==='1'?1:-1);}));
+  r.addEventListener('mouseenter',()=>pause(1e9)); r.addEventListener('mouseleave',()=>pause(1500));
+  r.addEventListener('focusin',()=>pause(1e9)); r.addEventListener('focusout',()=>pause(1500));
+  ['touchstart','wheel'].forEach(e=>r.addEventListener(e,()=>pause(6000),{passive:true}));
+  new IntersectionObserver(es=>es.forEach(e=>vis=e.isIntersecting),{threshold:.3}).observe(r);
+  if(RM) return;
+  setInterval(()=>{if(Date.now()<hold||!vis||document.hidden||$('.vlb.on')||r.scrollWidth-r.clientWidth<8)return;go(r,1);},3600);
+});
+/* đổi bộ lọc thì dải về đầu */
+$$('.seg button').forEach(b=>b.addEventListener('click',()=>{const r=b.closest('section')&&b.closest('section').querySelector('.rail-auto');if(r)r.scrollTo({left:0});}));
 
 /* form bản mẫu: báo lỗi dưới ô bắt buộc, không gửi đi đâu */
 $$('form[data-mock]').forEach(f=>{f.noValidate=true;
@@ -111,6 +133,10 @@ const kf=$('#kt-f'); if(kf) $$('button',kf).forEach(b=>b.onclick=()=>{$$('button
 
 /* tài liệu: đếm số tài liệu đã chọn */
 if(D.res){const docs=$$('#docs input'), dn=$('#doc-n');const upd=()=>{const n=docs.filter(d=>d.checked).length;dn.textContent=n?D.res.sel_n.replace('{n}',n):D.res.sel_0;};docs.forEach(d=>d.addEventListener('change',upd));upd();}
+
+/* mục lục bài: đánh dấu mục đang đọc */
+const tocA=$$('.toc nav a');
+if(tocA.length){const tio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)tocA.forEach(x=>x.classList.toggle('on',x.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-25% 0px -65% 0px'});$$('.ps[id]').forEach(s=>tio.observe(s));}
 
 /* hiện dần khi cuộn; lớp an toàn nếu trình duyệt dừng hiệu ứng */
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}}),{rootMargin:'0px 0px -8% 0px',threshold:.08});
