@@ -92,7 +92,7 @@ if(grid){const fb=$$('[data-filter]');
 /* sơ đồ nhà kho */
 $$('[data-map]').forEach(box=>{
  const pick=(id,scroll)=>{$$('.zpanel',box).forEach(p=>p.hidden=p.dataset.zp!==id);$$('.hs',box).forEach(h=>h.classList.toggle('on',h.dataset.z===id));$$('[data-zt]',box).forEach(b=>b.classList.toggle('on',b.dataset.zt===id));
-  if(scroll&&innerWidth<768)$('.zp',box).scrollIntoView({behavior:'smooth',block:'start'});};
+  const zp=$('.zp',box);if(!zp){const tg=document.getElementById(id);if(tg&&scroll)tg.scrollIntoView({behavior:'smooth',block:'start'});return;}if(scroll&&innerWidth<768)zp.scrollIntoView({behavior:'smooth',block:'start'});};
  $$('.hs',box).forEach(h=>{h.addEventListener('click',()=>pick(h.dataset.z,true));h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(h.dataset.z,true);}});});
  $$('[data-zt]',box).forEach(b=>b.addEventListener('click',()=>pick(b.dataset.zt,true)));
  pick(box.dataset.map||'loi-di-bo');});
@@ -121,7 +121,7 @@ if(D.guide&&$('#s-out')){const G=D.guide, P=D.products, T=D.tapes;
   $('#s-out').innerHTML=`<span class="lbl" style="margin-top:0">${G.suggest} ${z.n}</span><h3 style="margin-bottom:18px">${z.name}</h3>`+
    (out.length?out.map(o=>`<div class="item"><span class="th ${o[0]}"><img src="${IMG+o[1]}" alt=""></span><div><b>${o[2]}</b><span>${o[3]}</span></div></div>`).join(''):`<p class="muted">${G.need_issue}</p>`)+
    (note?`<p class="small" style="margin:14px 0 0;color:var(--tx2)">${note}</p>`:'')+
-   `<div class="now"><b>${D.ui.now}</b> ${z.now}</div><div class="btns" style="margin-top:18px"><a class="btn btn-ac btn-sm" href="${D.contact}?kv=${z.id}">${D.ui.survey_zone}<span class="ic">${ic('arrow-up-right')}</span></a></div>`;}
+   `<div class="now"><b>${D.ui.now}</b> ${z.now}</div><div class="btns" style="margin-top:18px"><a class="btn btn-ac btn-sm" href="${D.contact}?kv=${z.id}">${D.ui.survey_zone}<span class="ic">${ic('arrow-right')}</span></a></div>`;}
  run();
  const cl=$$('#cl input');
  cl.forEach(i=>i.onchange=()=>{const n=cl.filter(x=>x.checked).length;$('#cl-n').innerHTML=n+'<small>/10</small>';
@@ -145,7 +145,8 @@ $$('[data-scrub]').forEach(sec=>{const v=$('video',sec), st=$$('.ss-step',sec);
     else{v.loop=false;v.pause();upd();}};
   const upd=()=>{if(stat)return;const r=sec.getBoundingClientRect(),tot=r.height-innerHeight;const p=Math.min(1,Math.max(0,-r.top/Math.max(1,tot)));sec.style.setProperty('--p',p.toFixed(3));
     const k=Math.min(st.length-1,Math.floor(p*st.length*0.999));st.forEach((s,i)=>s.classList.toggle('on',i===k));if(dur){want=p*(dur-0.05);seek();}};
-  let tk=false;addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(()=>{tk=false;upd();});}},{passive:true});
+  let tk=false,onS=false;new IntersectionObserver(es=>{onS=es[0].isIntersecting;if(onS)upd();}).observe(sec);
+  addEventListener('scroll',()=>{if(!onS||tk)return;tk=true;requestAnimationFrame(()=>{tk=false;upd();});},{passive:true});
   addEventListener('resize',mode);mode();});
 
 /* điểm nhấn băng dán: nút tắt đèn */

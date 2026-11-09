@@ -1,5 +1,5 @@
 /* Thiên Khôi, Giải Pháp An Toàn. Mockup R3, 09/11/2026.
-   Một tông tối duy nhất. Một màu nhấn (vàng an toàn). Bo góc: khung 32/26px, thẻ 20px, ô nhập 14px, nút tròn hẳn.
+   Một tông tối duy nhất. Một màu nhấn (vàng an toàn). Bo góc (R6): khung 12px, thẻ con và ô nhập 8px, nút và chip tròn hẳn.
    Lớp z: nội dung 1, nút nổi 30, menu 40, menu mở 45, ngăn ghi chú 50, hộp video 55, hạt nhiễu 60. */
 :root{
   --bg:#0b100d; --bg2:#0e1511; --s1:#121a15; --s2:#17211b; --s3:#1d2922;
@@ -1114,3 +1114,84 @@ a.il:hover{color:var(--ac2);text-decoration-color:var(--ac)}
 .pbs .k.ok{color:var(--ac);margin-top:8px}
 .bento .t.e{grid-column:span 6;min-height:320px}
 @media (max-width:767px){.bento .t.e{grid-column:1/-1}}
+
+/* ===================== R6: chống mùi AI (rà theo design-taste-frontend và ScrollCraft, 09/11/2026) ===================== */
+/* 1. đầu trang: thanh menu giữ cỡ R4 (chị Cúc chốt); trang chủ bỏ thẻ video nổi; ảnh trang con chỉ phủ tối chỗ có chữ */
+.hero-grid{grid-template-columns:minmax(0,1fr)}
+.p-hero:before{background:linear-gradient(90deg,rgba(11,16,13,.92) 0%,rgba(11,16,13,.72) 38%,rgba(11,16,13,.15) 72%,rgba(11,16,13,0) 100%),linear-gradient(0deg,var(--bg) 0%,rgba(11,16,13,0) 30%)}
+
+/* 2. nút: bỏ vòng tròn quanh mũi tên, chuyển động ngắn */
+.btn{height:52px;padding:0 24px;gap:10px}
+.btn-sm,.hdr .btn-sm{height:44px;padding:0 18px;gap:8px}
+.btn .ic,.btn-sm .ic,.hdr .btn-sm .ic{width:auto;height:auto;background:none!important;border-radius:0;font-size:18px}
+.btn,.btn .ic{transition:transform .16s var(--ease),background-color .16s var(--ease)}
+.btn:hover .ic{transform:translateX(3px)}
+.lnk:hover i{transform:translateX(2px)}
+
+/* 3. bớt nhãn chữ hoa nhỏ trên tiêu đề */
+.dp-h .eyebrow,.faq-h .eyebrow,.lead-l .eyebrow,#theo-khu .eyebrow,.ss-t .eyebrow,.gl-t .eyebrow{display:none}
+.trust span,.lbl,.cc-k,.rows .r span,.tbl thead th,.mega h5,.toc b,.pbs .k,.versus .k,.gl-tag{text-transform:none;letter-spacing:0;font-size:13.5px}
+
+/* 4. bo góc thống nhất; bỏ khung lồng khung */
+:root{--r-xl:14px;--r-lg:12px;--r-md:10px;--r-sm:8px}
+.bz{padding:0;background:none;box-shadow:none;border-radius:var(--r-lg)}
+.bz>.core{border-radius:var(--r-lg);box-shadow:inset 0 0 0 1px var(--line)}
+.mfeat,.mfeat .media,.prod-line a,.result .item,.faq-chips a,.ss-step,.m-all,.news-row .media,.art.row .media,.mega .ml a{border-radius:var(--r-sm)}
+
+/* 5. bớt thẻ: khu trong kho thành danh sách; thông số thành dòng chữ trên nền; trang chủ 2 ô trên 1 hàng */
+.zcards{grid-template-columns:minmax(0,1fr);gap:0;border-top:1px solid var(--line2)}
+.zc{flex-direction:row;align-items:center;gap:24px;padding:18px 4px;border-radius:0;background:none;box-shadow:none;border-bottom:1px solid var(--line2)}
+.zc:hover{background:rgba(255,255,255,.03);box-shadow:none}
+.zc b{flex:0 0 34%;padding-right:0}
+.zc>i{position:static;margin-left:auto}
+@media (max-width:767px){.zc{flex-wrap:wrap;gap:8px 14px}.zc b{flex:1 1 70%}}
+.specs{grid-template-columns:repeat(3,auto);justify-content:start;gap:0 64px}
+.spec{background:none;box-shadow:none;border-radius:0;padding:16px 0 0;border-top:1px solid var(--line2)}
+@media (max-width:767px){.specs{grid-template-columns:minmax(0,1fr);gap:16px}}
+.bento .a,.bento .b{grid-row:span 1;min-height:520px}
+@media (max-width:767px){.bento .a{min-height:420px}.bento .b{min-height:320px}}
+
+/* 6. chuyển động: ngắn, ít, có lý do */
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.in-load{animation:up .6s var(--ease) both;animation-delay:calc(var(--i,0)*60ms)}
+.js .rv{transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease);transition-delay:calc(var(--i,0)*50ms)}
+.js .prod.rv,.js .zc.rv,.js .sw.rv,.js .vcard.rv,.js .dp-b.rv,.js .step.rv,.js .risk.rv,.js .trust.rv,.js .tbl.rv,.js .qa-list.rv,.js .art.rv{opacity:1;transform:none;transition:none}
+.hero-bg img,.p-hero .hero-bg img{animation:none}
+.hs .ring{animation-iteration-count:3}
+.prod,.zc,.lc,.news-row,.fab a,.lnk,.lnk i{transition-duration:.18s}
+.mfeat .media img,.bento .t .media img,.vcard .media img,.art .media img,.prod .media img{transition:transform .35s var(--ease)}
+.prod:hover{transform:translateY(-2px)}
+
+/* 8. vàng giữ một vai trò: nút chính, trạng thái đang chọn, nguy cơ trên sơ đồ, ô "Việc làm ngay" */
+.ck li i,.risk i,.step h3 i,.lnk i,.fab a i,.m-bar a:not(.k) i,.cc-l a>i:first-child,.lead-q a i,.mega .ml.res a>i,.drop i,.dl>i{color:var(--tx3)}
+.zc .n,.zp .num,.zs-item .num,.levels .lv,.cc-k,.pill-l{color:var(--tx2)}
+.steps3 .n{background:none;color:var(--tx);box-shadow:inset 0 0 0 1px var(--line2)}
+.eyebrow:before{display:none}
+.p-hero h1 em{color:inherit}
+.p-hero.plain:before{background:none}
+.sig-glow.off .gl-t h2,.sig-glow.off .gl-t .lead{text-shadow:none}
+
+/* 9 (phần không đảo quyết định): hỏi đáp một cột */
+.faq-w{grid-template-columns:minmax(0,1fr);max-width:880px;gap:var(--gap-stack)}
+.faq-h{position:static}
+
+/* 10 (phần không đảo quyết định): bỏ dòng "Video thử của nhà sản xuất" lặp dưới mỗi video (nhãn nguồn trên ảnh vẫn giữ) */
+.vcard p{display:none}
+.vcard h4{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* 11. trang Giải pháp: sơ đồ không kèm bảng khu (chi tiết từng khu ở ngay dưới) */
+.map-wrap:not(:has(.zp)){grid-template-columns:minmax(0,1fr)}
+.zs-media .zn{display:none}
+
+/* 12. chữ tiếng Việt có dấu: giãn dòng, giãn chữ hơn; nhịp khoảng cách: trên tiêu đề rộng, dưới khối gọn (tổng giữa hai phần vẫn 112 / 72 px) */
+h1{line-height:1.1;letter-spacing:-.03em}
+.hero h1{line-height:1.08}
+h2{line-height:1.12;letter-spacing:-.025em}
+h3{line-height:1.25;letter-spacing:-.015em}
+:root{--sec-pad-t:72px;--sec-pad-b:40px}
+@media (max-width:767px){:root{--sec-pad-t:44px;--sec-pad-b:28px}}
+.sec,.sec.tight,.sec.pt24,.sec.pt32,.sec.pt40,.sec.pt56,.sec.pt72{padding-top:var(--sec-pad-t);padding-bottom:var(--sec-pad-b)}
+.p-hero+.sec{padding-top:0}
+.trust-s+.sec{padding-top:var(--sec-pad-t)}
+#so-do{padding-top:calc(var(--sec-pad-t) + 32px)}
+
