@@ -1,0 +1,70 @@
+/* R7 (16/11/2026): bản thử NỀN SÁNG cho anh Thiện xem. Chỉ bật khi <html class="light">
+   (mở link kèm ?nen=sang). Không sửa site.css; mọi thứ ở đây đè lên nền tối.
+   Màu: nền ngà, chữ than chì, vàng an toàn giữ cho nút và vạch; chữ nhấn dùng vàng đậm cho đủ tương phản. */
+html.light{
+  --bg:#f6f5f0; --bg2:#efede6; --s1:#ffffff; --s2:#f3f2ec; --s3:#e9e7df;
+  --line:rgba(28,33,30,.10); --line2:rgba(28,33,30,.18);
+  --tx:#1c211e; --tx2:#454d48; --tx3:#646c67;
+  --ac:#F2C200; --ac2:#E0B300; --ac-ink:#1C1C1C; --ac-soft:rgba(242,194,0,.16);
+  --plate:#1c211e; --ok:#1f7a45; --err:#c0392b;
+  --tx-ac:#7a5f00;
+  color-scheme:light;
+}
+html.light body{background:var(--bg);color:var(--tx)}
+
+/* mặt nổi: thay lớp trắng mờ của nền tối bằng lớp tối rất nhạt */
+html.light .btn-gl,html.light .langsw,html.light .rail-ctl button,html.light .pmx button,html.light .lc .chips span,
+html.light .zc-i span,html.light .st-tag.wait,html.light .ss-step.on,html.light .xbtn,html.light .burger{background:rgba(28,33,30,.05)}
+html.light .btn-gl:hover,html.light .rail-ctl button:hover,html.light .lead-q a:hover,html.light .prod-line a:hover{background:rgba(28,33,30,.09)}
+html.light .btn-gl .ic{background:rgba(28,33,30,.08)}
+html.light .bz,html.light .figbtn,html.light .drop{background:#fff}
+html.light .bz>.core{box-shadow:0 1px 0 rgba(28,33,30,.04)}
+html.light .mfeat,html.light .prod-line a,html.light .result .item,html.light .faq-chips a,html.light .zc:hover,html.light .limit{background:#fff}
+html.light .chip,html.light .seg,html.light .opt,html.light .zone-tabs button,html.light .lead-q a{background:rgba(28,33,30,.05)}
+html.light .fld input,html.light .fld select,html.light .fld textarea{background:#fff}
+html.light .fld input:focus,html.light .fld select:focus,html.light .fld textarea:focus{background:#fffdf3}
+html.light .fld select option{background:#fff;color:var(--tx)}
+html.light .ph{background:repeating-linear-gradient(135deg,rgba(28,33,30,.04) 0 10px,transparent 10px 20px)}
+html.light .map-box .core{background:#e9e7df}
+
+/* đầu trang, menu, nút nổi */
+html.light .scrolled .hdr-in{background:rgba(255,255,255,.86);box-shadow:inset 0 0 0 1px rgba(28,33,30,.08),0 18px 40px -24px rgba(28,33,30,.35)}
+html.light .links>a:hover,html.light .dd>button:hover,html.light .dd.open>button,html.light .dd:focus-within>button{background:rgba(28,33,30,.06)}
+html.light .mega{background:#fff;box-shadow:inset 0 0 0 1px var(--line2),0 30px 80px -30px rgba(28,33,30,.35)}
+html.light .mega .ml a:hover{background:rgba(28,33,30,.05)}
+html.light .ov{background:rgba(246,245,240,.97)}
+html.light .fab a,html.light .m-bar,html.light .vbadge{background:rgba(255,255,255,.92);box-shadow:inset 0 0 0 1px var(--line2)}
+html.light .scrim{background:rgba(28,33,30,.35)}
+
+/* ảnh đầu trang: phủ màu ngà thay cho phủ tối để chữ than chì đọc được */
+html.light .hero:before{background:linear-gradient(90deg,rgba(246,245,240,.97) 0%,rgba(246,245,240,.88) 38%,rgba(246,245,240,.35) 72%,rgba(246,245,240,0) 100%)}
+html.light .p-hero:before{background:linear-gradient(90deg,rgba(246,245,240,.97) 0%,rgba(246,245,240,.86) 42%,rgba(246,245,240,.3) 80%,rgba(246,245,240,.1) 100%)}
+html.light .final:before{background:linear-gradient(100deg,rgba(246,245,240,.97) 0%,rgba(246,245,240,.88) 50%,rgba(246,245,240,.6) 100%)}
+html.light .final .card,html.light .lead-f .core{background:rgba(255,255,255,.92)}
+html.light .bento .t.img:before{background:linear-gradient(0deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.88) 32%,rgba(255,255,255,.2) 66%,rgba(255,255,255,0) 100%)}
+@media (max-width:900px){
+  html.light .hero:before{background:linear-gradient(0deg,rgba(246,245,240,.99) 0%,rgba(246,245,240,.9) 45%,rgba(246,245,240,.5) 100%)}
+  html.light .p-hero:before{background:linear-gradient(0deg,rgba(246,245,240,.99) 0%,rgba(246,245,240,.9) 60%,rgba(246,245,240,.65) 100%)}
+}
+html.light .credit{color:rgba(28,33,30,.7)}
+html.light .versus .poly{background:linear-gradient(160deg,#fff8d6,#fff)}
+
+/* sơ đồ kho: chấm điểm nóng */
+html.light .hs .dot{stroke:#fff}
+html.light .hs:hover .dot,html.light .hs:focus-visible .dot,html.light .hs.on .dot{fill:#1c211e}
+html.light .hs.on text{fill:#fff}
+
+/* chữ và biểu tượng nhấn: vàng sáng trên nền trắng không đủ tương phản, dùng vàng đậm */
+html.light .avatar,html.light .bento .d i,html.light .cc-k,html.light .cc-l a:hover b,html.light .cc-l a:hover>i:last-child,
+html.light .cc-l a>i:first-child,html.light .ck li i,html.light .crumbs a:hover,html.light .dl>i,html.light .drop i,html.light .fab a i,
+html.light .fld label i,html.light .fld .lb i,html.light .form-ok i,html.light .lead-q a i,html.light .levels .lv,html.light .lnk i,
+html.light .m-all i,html.light .m-bar a i,html.light .mega .ml.num .n,html.light .mega .ml.res a>i,html.light .mega h5 a,html.light .now b,
+html.light .ovl a b,html.light .pill-l,html.light .qa summary i,html.light .qa summary:hover span,html.light .risk i,html.light .step h3 i,
+html.light .steps3 .n,html.light .vbadge i,html.light .versus .poly .k,html.light .versus .poly li i,html.light .zc .n,html.light .zp .num,
+html.light .zs-item .num,html.light a.il:hover,html.light em.ac,html.light h1 em,html.light h2 em,html.light .eyebrow{color:var(--tx-ac)}
+html.light .pbs .k.ok,html.light .st-tag.ready{color:var(--ok)}
+/* chữ màu cứng của nền tối */
+html.light .hero .lead,html.light .bento .t p,html.light .article p{color:var(--tx2)}
+html.light .now{color:var(--tx)}
+html.light .ph,html.light .ph-in,html.light .tag.ph{color:#3f4aa0}
+html.light .ph b{color:#2c357a}

@@ -1220,3 +1220,7 @@ h3{line-height:1.25;letter-spacing:-.015em}
 #thu-va-dap .tv-ask{margin-top:20px}
 #thu-va-dap .tv-note{margin-top:10px}
 @media (max-width:767px){#thu-va-dap .specs{gap:0}#thu-va-dap .spec{display:grid;grid-template-columns:120px minmax(0,1fr);align-items:baseline;gap:12px;padding:12px 0}#thu-va-dap .spec b{font-size:28px;margin:0}#thu-va-dap .spec span{font-size:13.5px;line-height:1.45}#thu-va-dap .tv-more{margin-top:24px}}
+
+/* R7 (16/11/2026): chân trang bỏ logo (chỉ còn một logo ở đầu trang), thay bằng tên chữ */
+.site-f .f-brand .f-name{margin:0;font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--tx)}
+.site-f .f-brand .f-name+p{margin-top:10px}
