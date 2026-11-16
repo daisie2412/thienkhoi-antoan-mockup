@@ -68,3 +68,27 @@ html.light .hero .lead,html.light .bento .t p,html.light .article p{color:var(--
 html.light .now{color:var(--tx)}
 html.light .ph,html.light .ph-in,html.light .tag.ph{color:#3f4aa0}
 html.light .ph b{color:#2c357a}
+
+/* R7b (16/11/2026): sơ đồ nhà kho 7 khu trên nền sáng. Hình vẽ ghi màu trắng mờ cho nền tối ngay trong SVG;
+   ở đây đè lại theo từng mức mờ: nét mảnh than chì 30%, nét chính 60%, tường và chữ 80%; vàng và xanh đổi sang tông đậm. */
+html.light .map-box .core{background:#fbfaf6}
+html.light .map-box svg [stroke="rgba(236,238,232,.035)"],html.light .map-box svg [stroke="rgba(236,238,232,.06)"]{stroke:rgba(28,33,30,.10)}
+html.light .map-box svg [fill="rgba(236,238,232,.025)"],html.light .map-box svg [fill="rgba(236,238,232,.04)"],html.light .map-box svg [fill="rgba(236,238,232,.05)"]{fill:rgba(28,33,30,.06)}
+html.light .map-box svg [stroke="rgba(236,238,232,.12)"],html.light .map-box svg [stroke="rgba(236,238,232,.13)"]{stroke:rgba(28,33,30,.32)}
+html.light .map-box svg [stroke="rgba(236,238,232,.28)"],html.light .map-box svg [stroke="rgba(236,238,232,.3)"],html.light .map-box svg [stroke="rgba(236,238,232,.32)"],
+html.light .map-box svg [stroke="rgba(236,238,232,.35)"],html.light .map-box svg [stroke="rgba(236,238,232,.38)"]{stroke:rgba(28,33,30,.62)}
+html.light .map-box svg [stroke="rgba(236,238,232,.55)"]{stroke:rgba(28,33,30,.85)}
+html.light .map-box svg [fill="rgba(236,238,232,.5)"],html.light .map-box svg [fill="rgba(236,238,232,.55)"],html.light .map-box svg [fill="rgba(236,238,232,.6)"]{fill:rgba(28,33,30,.82)}
+html.light .map-box svg [fill="#F2C200"]{fill:#E2AE00}
+html.light .map-box svg [stroke="#F2C200"]{stroke:#C79600;opacity:1}
+html.light .map-box svg [fill="#7fc79a"],html.light .map-box svg [fill="rgba(127,199,154,.85)"]{fill:#1f7a45}
+html.light .map-box svg [stroke="#7fc79a"]{stroke:#1f7a45}
+html.light .map-box svg [stroke="rgba(127,199,154,.45)"]{stroke:rgba(31,122,69,.65)}
+html.light .map-box svg [fill="rgba(127,199,154,.07)"]{fill:rgba(31,122,69,.10)}
+html.light .map-box svg .ml{font-weight:600}
+html.light .map-box svg .hs .dot{stroke:#fff;stroke-width:2.5}
+html.light .map-legend{color:var(--tx2)}
+html.light .map-legend i{height:3px}
+html.light .map-legend span:nth-child(1) i{background:rgba(28,33,30,.62)!important}
+html.light .map-legend span:nth-child(2) i{background:#1f7a45!important}
+html.light .map-legend span:nth-child(3) i{background:#C79600!important}
