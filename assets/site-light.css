@@ -94,3 +94,15 @@ html.light .map-legend span:nth-child(2) i{background:#1f7a45!important}
 html.light .map-legend span:nth-child(3) i{background:#C79600!important}
 /* R7c: nút đang chọn giữ nền than chì, chữ sáng (lớp nền mờ ở trên từng đè mất nền này) */
 html.light .zone-tabs button.on,html.light .opt.on,html.light .seg button.on{background:var(--tx);color:var(--bg)}
+
+/* R7d (18/11/2026): nút đổi nền ở đầu trang (chỉ có ở bản mẫu). Nền tối hiện mặt trời, nền sáng hiện mặt trăng. */
+.thsw{flex:none;width:44px;height:44px;border-radius:50%;border:0;display:grid;place-items:center;padding:0;cursor:pointer;
+  background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px var(--line2);color:var(--tx);transition:background-color .25s var(--ease)}
+.thsw i{font-size:20px;line-height:1}
+.thsw:hover{background:rgba(255,255,255,.12)}
+.thsw:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.thsw .ph-moon{display:none}
+html.light .thsw .ph-sun{display:none}
+html.light .thsw .ph-moon{display:block}
+html.light .thsw{background:rgba(28,33,30,.05)}
+html.light .thsw:hover{background:rgba(28,33,30,.10)}
