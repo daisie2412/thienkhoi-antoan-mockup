@@ -1278,3 +1278,34 @@ h3{line-height:1.25;letter-spacing:-.015em}
 @media (max-width:600px){.ilb .pv,.ilb .nx{top:auto;bottom:16px;transform:none}}
 body.ilb-open{overflow:hidden}
 @media (max-width:480px){.gal figcaption{font-size:12.5px;line-height:1.45}.gal .credit{font-size:10px;padding:4px 6px;right:6px;bottom:6px}}
+
+/* R7g (18/11/2026): rà độ nhìn thấy của chữ theo điểm ảnh thật trên màn hình, cả hai nền */
+/* ô ảnh có chữ (trang chủ, Về chúng tôi): lớp phủ trước đây cùng tầng -1 với ảnh nên bị ảnh che mất; đưa lớp phủ lên trên ảnh, chữ lên trên lớp phủ */
+.bento .t.img:before{z-index:0;background:linear-gradient(0deg,rgba(9,13,11,.96) 0%,rgba(9,13,11,.88) 38%,rgba(9,13,11,.5) 68%,rgba(9,13,11,.12) 88%,rgba(9,13,11,0) 100%)}
+.bento .t .tb{position:relative;z-index:1}
+.bento .t.img .pill-l{color:#e3e7e1}
+/* đầu trang khi cuộn: nền đặc hơn, chữ VI/EN và menu không chìm theo ảnh phía sau */
+.scrolled .hdr-in{background:rgba(14,21,17,.88)}
+/* ảnh đầu trang: dải tối ở mép trên để menu, nút VI/EN, nút đổi nền đọc được khi chưa cuộn; vùng chữ lớn phủ dày hơn */
+.hero:before{background:linear-gradient(180deg,rgba(11,16,13,.82) 0,rgba(11,16,13,.5) 110px,rgba(11,16,13,0) 220px),linear-gradient(90deg,rgba(11,16,13,.94) 0%,rgba(11,16,13,.84) 45%,rgba(11,16,13,.5) 72%,rgba(11,16,13,.3) 100%),linear-gradient(0deg,var(--bg) 0%,rgba(11,16,13,0) 34%)}
+.p-hero:before{background:linear-gradient(180deg,rgba(11,16,13,.82) 0,rgba(11,16,13,.5) 110px,rgba(11,16,13,0) 220px),linear-gradient(90deg,rgba(11,16,13,.94) 0%,rgba(11,16,13,.82) 45%,rgba(11,16,13,.4) 80%,rgba(11,16,13,.2) 100%),linear-gradient(0deg,var(--bg) 0%,rgba(11,16,13,0) 30%)}
+/* nhãn sơ đồ nền tối rõ hơn; trên máy tính chữ nhãn 12 đơn vị chỉ cao 8,8 px, nâng lên khoảng 11 px */
+.map-box svg text[fill="rgba(236,238,232,.5)"]{fill:rgba(236,238,232,.74)}
+@media (min-width:768px){.map-box svg .ml{font-size:15px;letter-spacing:.05em}}
+/* nút VI/EN chưa chọn ở đầu trang: dùng chữ phụ cấp 2 (đầu trang nằm trên ảnh hoặc nội dung đang cuộn) */
+.hdr .langsw a:not(.on){color:var(--tx2)}
+@media (max-width:767px){
+  .hero:before{background:linear-gradient(180deg,rgba(11,16,13,.82) 0,rgba(11,16,13,.5) 90px,rgba(11,16,13,0) 180px),linear-gradient(0deg,rgba(11,16,13,.98) 0%,rgba(11,16,13,.86) 45%,rgba(11,16,13,.45) 100%)}
+  /* điện thoại: chữ trải hết bề ngang nên phủ đều theo chiều dọc (khối R6 phía trên từng đè mất bản này) */
+  .p-hero:before{background:linear-gradient(180deg,rgba(11,16,13,.82) 0,rgba(11,16,13,.5) 90px,rgba(11,16,13,0) 180px),linear-gradient(0deg,rgba(11,16,13,.98) 0%,rgba(11,16,13,.88) 60%,rgba(11,16,13,.66) 100%)}
+  .spec b small{font-size:11px}
+  /* sơ đồ nhà kho: hình thu còn khoảng 1/3 nên chữ 12 đơn vị chỉ cao 4 px; phóng chữ nhãn và số điểm nóng */
+  .map-box svg .ml{font-size:22px;letter-spacing:.02em}
+  .map-box svg .ml[y="34"]{transform:translateY(6px)}  /* 2 nhãn trên cùng: chữ to lên thì chạm viền trên sơ đồ, dời xuống */
+  .map-box svg .ml[x="798"]{transform:translate(-40px,10px)}  /* nhãn khu xuất hàng: sát mép phải và viền trên */
+  .hs .dot{transform:scale(1.4);transform-box:fill-box;transform-origin:center}
+  .hs text{font-size:25px}
+  /* thẻ video hẹp: nút phát ra giữa ảnh, không bị nhãn "Video: nhà sản xuất" ở góc dưới đè lên */
+  .vcard .play{left:0;right:0;top:0;bottom:0;margin:auto}
+}
+@media (max-width:480px){.gal .credit{font-size:11px}}
