@@ -128,7 +128,25 @@ if(D.guide&&$('#s-out')){const G=D.guide, P=D.products, T=D.tapes;
   $('#cl-h').textContent=n===0?G.cl_s0:n<=2?n+' '+G.cl_s1:n<=5?n+' '+G.cl_s2:n+' '+G.cl_s3;$('#cl-p').textContent=n===0?G.cl_p0:G.cl_p1;});}
 
 /* lọc video, lọc bài viết */
-const vf=$('#vf'); if(vf) $$('button',vf).forEach(b=>b.onclick=()=>{$$('button',vf).forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('#vg .vcard').forEach(c=>c.classList.toggle('hide',b.dataset.vf!=='all'&&c.dataset.b!==b.dataset.vf));});
+/* R7f: lọc video hai tầng, theo dòng sản phẩm (#vf) và theo loại video (#vt) */
+{const vf=$('#vf'), vt=$('#vt'); let fb='all', ft='all';
+ const ap=()=>$$('#vg .vcard').forEach(c=>c.classList.toggle('hide',(fb!=='all'&&c.dataset.b!==fb)||(ft!=='all'&&c.dataset.t!==ft)));
+ [[vf,'vf',v=>{fb=v}],[vt,'vt',v=>{ft=v}]].forEach(([el,k,set])=>{if(el) $$('button',el).forEach(b=>b.onclick=()=>{$$('button',el).forEach(x=>x.classList.remove('on'));b.classList.add('on');set(b.dataset[k]);ap();});});}
+
+/* R7f: hộp xem ảnh lớn cho khối ảnh thực tế (có nút trước, sau; Esc để đóng) */
+(function(){const gs=$$('[data-gal]'); if(!gs.length) return; const en=D.lang==='en'; let box=null, list=[], k=0, from=null;
+ const show=()=>{const b=list[k], im=$('img',box); im.src=b.dataset.zoom; im.alt=b.dataset.cap||''; $('figcaption',box).textContent=b.dataset.cap||''; $('.n',box).textContent=(k+1)+' / '+list.length;};
+ const close=()=>{box.classList.remove('on'); B.classList.remove('ilb-open'); if(from) from.focus();};
+ const build=()=>{box=document.createElement('div'); box.className='ilb'; box.setAttribute('role','dialog'); box.setAttribute('aria-modal','true');
+  box.innerHTML='<figure><img alt=""><figcaption></figcaption><span class="n"></span></figure><button type="button" class="x" aria-label="'+(en?'Close':'Đóng')+'">'+ic('x')+'</button><button type="button" class="pv" aria-label="'+(en?'Previous photo':'Ảnh trước')+'">'+ic('arrow-left')+'</button><button type="button" class="nx" aria-label="'+(en?'Next photo':'Ảnh sau')+'">'+ic('arrow-right')+'</button>';
+  document.body.appendChild(box); $('.x',box).onclick=close;
+  $('.pv',box).onclick=()=>{k=(k-1+list.length)%list.length;show();}; $('.nx',box).onclick=()=>{k=(k+1)%list.length;show();};
+  box.addEventListener('click',e=>{if(e.target===box) close();});
+  document.addEventListener('keydown',e=>{if(!box.classList.contains('on')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') $('.pv',box).click(); else if(e.key==='ArrowRight') $('.nx',box).click();});};
+ gs.forEach(g=>{const bs=$$('[data-zoom]',g); bs.forEach((b,i)=>b.addEventListener('click',()=>{if(!box) build(); list=bs; k=i; from=b; show(); box.classList.add('on'); B.classList.add('ilb-open'); $('.x',box).focus();}));});})();
+
+/* R7f: video thử lặp ở trang chủ; người xem chọn giảm chuyển động thì không tự chạy */
+if(matchMedia('(prefers-reduced-motion: reduce)').matches) $$('.lx-vid').forEach(v=>{v.removeAttribute('autoplay'); v.pause(); v.controls=true;});
 const kf=$('#kt-f'); if(kf) $$('button',kf).forEach(b=>b.onclick=()=>{$$('button',kf).forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('#kt .art').forEach(c=>c.style.display=(b.dataset.c==='all'||c.dataset.c===b.dataset.c)?'':'none');});
 
 /* tài liệu: đếm số tài liệu đã chọn */

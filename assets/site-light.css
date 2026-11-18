@@ -46,7 +46,7 @@ html.light .bento .t.img:before{background:linear-gradient(0deg,rgba(255,255,255
   html.light .hero:before{background:linear-gradient(0deg,rgba(246,245,240,.99) 0%,rgba(246,245,240,.9) 45%,rgba(246,245,240,.5) 100%)}
   html.light .p-hero:before{background:linear-gradient(0deg,rgba(246,245,240,.99) 0%,rgba(246,245,240,.9) 60%,rgba(246,245,240,.65) 100%)}
 }
-html.light .credit{color:rgba(28,33,30,.7)}
+html.light .credit{color:#1c211e;background:rgba(255,255,255,.9)}  /* R7e: dải nguồn ảnh nền trắng chữ than chì, đọc được trên mọi ảnh */
 html.light .versus .poly{background:linear-gradient(160deg,#fff8d6,#fff)}
 
 /* sơ đồ kho: chấm điểm nóng */
@@ -106,3 +106,14 @@ html.light .thsw .ph-sun{display:none}
 html.light .thsw .ph-moon{display:block}
 html.light .thsw{background:rgba(28,33,30,.05)}
 html.light .thsw:hover{background:rgba(28,33,30,.10)}
+
+/* R7e (18/11/2026): dải ngà ở mép trên ảnh đầu trang để menu than chì đọc được khi chưa cuộn (đo 3,4:1 trên ảnh tối) */
+html.light .hero:before{background:linear-gradient(180deg,rgba(246,245,240,.95) 0,rgba(246,245,240,.8) 100px,rgba(246,245,240,0) 200px),linear-gradient(90deg,rgba(246,245,240,.97) 0%,rgba(246,245,240,.88) 38%,rgba(246,245,240,.35) 72%,rgba(246,245,240,0) 100%)}
+html.light .p-hero:before{background:linear-gradient(180deg,rgba(246,245,240,.95) 0,rgba(246,245,240,.8) 100px,rgba(246,245,240,0) 200px),linear-gradient(90deg,rgba(246,245,240,.97) 0%,rgba(246,245,240,.86) 42%,rgba(246,245,240,.3) 80%,rgba(246,245,240,.1) 100%)}
+@media (max-width:900px){
+  html.light .hero:before{background:linear-gradient(180deg,rgba(246,245,240,.95) 0,rgba(246,245,240,.8) 100px,rgba(246,245,240,0) 200px),linear-gradient(0deg,rgba(246,245,240,.99) 0%,rgba(246,245,240,.9) 45%,rgba(246,245,240,.5) 100%)}
+  html.light .p-hero:before{background:linear-gradient(180deg,rgba(246,245,240,.95) 0,rgba(246,245,240,.8) 100px,rgba(246,245,240,0) 200px),linear-gradient(0deg,rgba(246,245,240,.99) 0%,rgba(246,245,240,.9) 60%,rgba(246,245,240,.65) 100%)}
+}
+
+/* R7f: biểu tượng trong danh sách video thử dùng vàng đậm trên nền sáng */
+html.light .lx-list i{color:var(--tx-ac)}
