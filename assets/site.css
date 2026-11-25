@@ -1309,3 +1309,5 @@ body.ilb-open{overflow:hidden}
   .vcard .play{left:0;right:0;top:0;bottom:0;margin:auto}
 }
 @media (max-width:480px){.gal .credit{font-size:11px}}
+/* R8b (25/11/2026): ảnh ô Rào chắn ở trang chủ đổi sang ảnh trong nhà, sáng hơn; trên điện thoại phủ tối dày thêm cho nhãn nhỏ trên tiêu đề */
+@media (max-width:900px){.bento .t.img:before{background:linear-gradient(0deg,rgba(9,13,11,.96) 0%,rgba(9,13,11,.9) 45%,rgba(9,13,11,.7) 72%,rgba(9,13,11,.25) 90%,rgba(9,13,11,0) 100%)}}
